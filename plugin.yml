@@ -6,11 +6,5 @@ api: 3.0.0
 
 commands:
    sao:
-        usage: /sao <help | commands>
-	description: SAO-System Main Command
-   login:
-        usage: /login <help | commands>
-	descritpiom: SAO Login System Main Command
-   lang:
-        usage: /lang <en>
-	description: Choose the Lang
+        usage: /sao <help | commands
+	description: The SAO Main Commands
