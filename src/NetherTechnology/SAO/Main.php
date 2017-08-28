@@ -39,7 +39,6 @@ class Main extends PluginBase explements Listener {
 		$this->getLogger()->info("SAO by NetherTechnology Loaded Successfully");
 		$this->Listener = new EventListener($this);
 		$pvpcfg = new Config($this->getDataFolder()."pvpworldconfig.yml", Config::YAML, array(
-		    "" => 1,
 			"UnPVPWorld" => []
 			"UnPVPMessage" => "You cant PVP here.",
 		));
