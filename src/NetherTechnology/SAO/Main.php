@@ -311,6 +311,14 @@ class Main extends PluginBase explements Listener {
 								}else{
 									$sender->sendMessage("Noone is asking you for teaming");
 								}
+							}elseif($arg[1] == "demiss") {
+								$sendor = $sender->getName();
+								$config = $this->getPlayerConfig($name);
+								$bteamm = $config->get("teamm");
+								$bconfig = $this->getPlayerConfig($teamm);
+								$config->set("teamm", "");
+								$bconfig->set("teamm". "");
+								$sender->sendMessage("You have demiss the team!");
 							}
 							elseif($arg[1] == "help") {
 								$sender->sendMessage("=======================[SAO Team Help]=========================");
