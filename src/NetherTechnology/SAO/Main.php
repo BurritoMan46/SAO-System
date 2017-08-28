@@ -321,23 +321,63 @@ class Main extends PluginBase explements Listener {
 						}
 					}
 					elseif($arg[0] == "clan") {
+						$sendor = $sender->getName();
+						$pconfig = $this->getPlayerConfig($sendor);
 						if(!empty $arg[1]) {
 							if($arg[1] == "create"){
 								if(!empty $arg[2]) {
-									$sendor = $sender->getName();
 									$owner = $sendor;
 									$config = $this->getClanConig($arg[2]);
-									$pconfig = $this->getPlayerConfig($sendor);
 									$config->set("name", $arg[2]);
 									$config->set("owner", $owner);
+									$config->set("exist", "true");
 									$money = $pconfig->get("money");
 									$cm = 10000;
 									$pconfig->set("money", ($momey - $cm));
 									$sender->sendMessage("You have successfully created a clan");
 								}
 							}
-							elseif($arg[1] == "quit")
+							elseif($arg[1] == "quit") {
+								$clan = $pconfig->get("clan");
+								$config = $this->getClanConfig($clan);
+								$owner = $config->get("owner");
+								if(empty $clan) {
+									$sedner->sendMessage("You dont have a clan");
+								}elseif($owner == $sender){
+									$sender->sendMessage("You are the owner of this clan");
+								}else{
+									$pconfig->set("clan", "");
+									$sender->sendMessage("You have quit the clan succcessfully");
+								}
+							}
+							elseif($arg[1] == "join") {
+								if(!empty $arg[2]) {
+								$clan= $pconfig->get("clan");
+								$config = $this->getClanConfig($arg[2]);
+								$exist = $config->get("exist");
+									if(!empty $clan) {
+										$sender->sendMessage("You have a clan already");
+									}elseif($exist = "false"){
+										$sender->sendMessage("The clan doesnt exist!");
+									}else{
+										$pconfig->set("clan" $arg[2]);
+										$sender->sendMessage("You have join the clan $arg[2]");
+									}
+								}else{
+									$sender->sendMessage("Please enter the clan name");
+								}
+							}else{
+								$sender->sendMessage("==============[SAO Clan Commands]==============");
+								$sender->sendMessage("/SAO clan join <clan> - join a clan");
+								$sender->sendMessage("/SAO clan quit - quit a clan");
+								$sender->sendMessage("/SAO clan create <clan> - create a clan");
+							}
 						}
+					}elseif($arg[0] == "version"){
+						$sender->sendMessage("SAO - Sword Art Online");
+						$sender->sendMessage("version: 0.0.1 beta");
+						$sender->sendMessage("API: 3.0.0");
+						$sender->sendMessage("author: NetherTechnology");
 					}
 				}
 		}
@@ -418,6 +458,7 @@ class Main extends PluginBase explements Listener {
 		    "name" => $name,
 			"money" => 0,
 			"owner" => "",
+			"exist" => "false",
 			"maxp" => 50,
 			"nowp" => 1
 		));
@@ -467,6 +508,9 @@ class Main extends PluginBase explements Listener {
 		$item = $damager->getInventory()->getItemInHand();
 		$id = $item->getId();
 		$damage = $item->getDamage();
+		$config = $this->getPlayerConfig($damager->getName());
+		$teamm = $config->get("teamm");
+		$lover = $config->get("lover");
 		$hdamage = $event->getDamage();
 		if($damager instanceof Player && $bdamager instanceof Entity) {
 			if ($bdamager->getHealth() - $hdamage <= 0) {
@@ -476,86 +520,104 @@ class Main extends PluginBase explements Listener {
 			if(in_array($damager->getLevel()->getName(), $pvpcfg->get("UnPVPWorld")) && !$damager->isOp()) {
 				$damager->sendMessage($pvpcfg->get("UnPVPMessage"));
 			}
-		}else{
-			if($id == 351) {
-				if($dmaage = 0) {
-					$event->setDamage(10);
-					$damager->sendMessage("You use skills");
+			elseif($teamm == $bdamager->getName()){
+				$event->setCancelled();
+				$damager->sendMessage("You cant hurt your teammate!");
+			}
+			elseif($lover == $bdamager->getName()){
+				$event->setCancelled();
+				$damager->sendMessage("You cant hurt your partner!");
+			}
+			elseif ($bkiller->getHealth() - $event->getDamage() <= 0) {
+				$this->plugin->addExp($killer->getName(), 20);
+				$damager->sendMessage("You have kill" . $bdamager->getName() . ",Got 20 Exp");
+			}else{
+			        if($id == 351) {
+					if($dmaage = 0) {
+				        	$event->setDamage(10);
+					        $damager->sendMessage("You use skills");
+				        }
+				        elseif($damage == 1) {
+		       			        $event->setDamage(5);
+					        $damager->sendMessage("You use skills");
+				        }
+				        elseif($damage == 2) {
+					        $event->setDamage(5);
+					        $damager->sendMessage("You use skills");
+				        }
+				        elseif($damage == 3) {
+				        	$event->setDamage(5);
+				        	$damager->sendMessage("You use skills");
+				        }
+			        	elseif($damage == 4) {
+				        	$event->setDamage(5);
+			        		$damager->sendMessage("You use skills");
+			        	}
+			        	elseif($damage == 5) {
+			        		$event->setDamage(5);
+			        		$damager->sendMessage("You use skills");
+			        	}
+			        	elseif($damage == 6) {
+			        		$event->setDamage(5);
+			        		$damager->sendMessage("You use skills");
+			        	}
+			        	elseif($damage == 7) {
+			        		$event->setDamage(5);
+			        		$damager->sendMessage("You use skills");
+			        	}
+			        	elseif($damage == 8) {
+			        		$event->setDamage(5);
+                                                $damager->sendMessage("You use skills");
+			        	}
+			        	elseif($damage == 9) {
+			        		$event->setDamage(5);
+			        		$damager->sendMessage("You use skills");
+			        	}
+				        elseif($damage == 10) {
+			        		$event->setDamage(5);
+			         		$damager->sendMessage("You use skills");
+			        	}
+			        	elseif($damage == 11) {
+			        		$event->setDamage(5);
+			        		$damager->sendMessage("You use skills");
+			        	}
+			        	elseif($damage == 12) {
+			        		$event->setDamage(5);
+			        		$damager->sendMessage("You use skills");
+			        	}
+				        elseif($damage == 13) {
+				        	$event->setDamage(5);
+				        	$damager->sendMessage("You use skills");
+				        }
+				        elseif($damage == 14) {
+					        $event->setDamage(5);
+					        $damager->sendMessage("You use skills");
+				        }
+	        			elseif($damage == 15) {
+	        				$event->setDamage(5);
+	        				$damager->sendMessage("You use skills");
+	        			}
 				}
-				elseif($damage == 1) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 2) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 3) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 4) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 5) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 6) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 7) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 8) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 9) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 10) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 11) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 12) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 13) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 14) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-				elseif($damage == 15) {
-					$event->setDamage(5);
-					$damager->sendMessage("You use skills");
-				}
-			    }
 			}
 		}
+	}
 //API[4]
         public function on ReduceMoney($name $amount) {
 		$config = $this->getPlayerConfig($name);
 		$money = $config->get("money");
 		$config->set("money", [$money - $amount]);
+		return;
 	}
 //API[5]
         public function onAddMoney(name $amount) {
 		$config = $this->getPlayerConfig($name);
 		$money = $config->get("money");
 		$config->set("money", [$money + $amount]);
+		return;
 	}
+//API[6]
+        public function onMyMoney($name) {
+		$config = $this->getPlaerConfig($name);
+		return $config->get("money");
 	}
->
+}
