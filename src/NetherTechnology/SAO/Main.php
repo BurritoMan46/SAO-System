@@ -32,20 +32,13 @@ class Main extends PluginBase explements Listener {
 	portected $Listener;
 	
 	
-    public function onEnable() {
+        public function onEnable() {
 	    $this->getServer()->getPluginManager()->registerEvents($this, $this);
 	    @mkdir($this->getDataFolder()); 
         @mkdir($this->getDataFolder() . "\\players"); 
 		$this->getLogger()->info("SAO by NetherTechnology Loaded Successfully");
 		$this->Listener = new EventListener($this);
-		$pvpcfg = new Config($this->getDataFolder()."pvpworldconfig.yml", Config::YAML, array(
-			"UnPVPWorld" => []
-			"UnPVPMessage" => "You cant PVP here.",
-		));
-		return $config;
 	}
-	}
-	
 	public function onBreak(BlockBreakEvent $event) {
 	    $player = $event->getPlayer();
 		if($player->isOp())
@@ -460,6 +453,14 @@ class Main extends PluginBase explements Listener {
 		return $config;
 	}
 //API[2]
+        public function onGetPVPConfig() {
+		$pvpcfg = new Config($this->getDataFolder()."pvpworldconfig.yml", Config::YAML, array(
+			"UnPVPWorld" => []
+			"UnPVPMessage" => "You cant PVP here.",
+			
+		));
+	}
+//API[7]
 	public function onGetClanConfig($name) {
 		$config = new Config($this->getDataFolder() . "\\clans\\" . strtolower($name) . ".yml", Config::YAML, array(
 		    "name" => $name,
