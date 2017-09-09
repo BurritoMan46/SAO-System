@@ -5,6 +5,7 @@ The pocketmine plugin of Sword Art Online(SAO)
 | :---: | :---: | :---: | :---:|
 |Exp System | 23/7/2017 | 28/8/2017 | 100% |
 |Team System | 28/7/2017 | NA | 90% |
+|Login System | 9/4/2017 | NA | 50% |
 |Economy | 28/7/2017 | 29/7/2017 | 100% |
 |Clan | 15/8/2017 | 28/8/2017 | 100% |
 |Unplacable blocks | 23/7/2017 | 23/7/2017 | 100% |
@@ -17,4 +18,4 @@ The pocketmine plugin of Sword Art Online(SAO)
 |Lobby Crystal | NA | NA | 0% |
 |Bosses | NA | NA | 0% |
 |Other | NA | NA | 0% |
-|Bug Test | 28/8/2017 | NA | 25% |
+|Bug Test | 28/8/2017 | NA | 10% |
