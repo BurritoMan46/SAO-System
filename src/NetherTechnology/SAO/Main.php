@@ -58,7 +58,7 @@ class Main extends PluginBase implements Listener {
 	    @mkdir($this->getDataFolder()); 
         @mkdir($this->getDataFolder() . "\\players"); 
 		@mkdir($this->getDataFolder() . "\\clan");
-		$this->getLogger()->info("SAO by NetherTechnology Loaded Successfully");
+		$this->getLogger()->info("CoreSystem By @DakarOmar Loaded Successfully");
 		$this->Listener = new EventListener($this);
 		$this->pvpcfg = new Config($this->getDataFolder() . "pvpconfig.yml", Config::YAML, [
           "UnPVPmessage" => "You're not allowed to hurt players here.",
@@ -188,7 +188,7 @@ class Main extends PluginBase implements Listener {
 					        	}
 				        	}
 				        	elseif(strtolower($arg[0]) == "help"){
-					        	$sender->sendMessage("===============[SAO EXP SYSTEM HELP]===============");
+					        	$sender->sendMessage("===============[AVERSION EXP SYSTEM HELP]===============");
 						        $sender->sendMessage("/Exp help - Check help");
 						        $sender->sendMessage("/Exp checklevel <player> - Check Player level");
 						        $sender->sendMessage("/Exp checkexp <player> - Check Player Exp");
@@ -442,7 +442,7 @@ class Main extends PluginBase implements Listener {
 								$sender->sendMessage("You have demiss the team!");
 							}
 							elseif(strtolower($arg[1]) == "help") {
-								$sender->sendMessage("=======================[SAO Team Help]=========================");
+								$sender->sendMessage("=======================[AVERSION TEAM HELP]=========================");
 								$sender->sendMessage("/SAO team team <player = Team with player>");
 								$sender->sendMessage("/SAO team deneny <player> = Deneny the inventation of player");
 								$sender->sendMessage("/SAO team accept <player> = Accept the teaming of player");
@@ -496,7 +496,7 @@ class Main extends PluginBase implements Listener {
 									$sender->sendMessage("Please enter the clan name");
 								}
 							}else{
-								$sender->sendMessage("==============[SAO Clan Commands]==============");
+								$sender->sendMessage("==============[AVERSION CLAN COMMANDS]==============");
 								$sender->sendMessage("/SAO clan join <clan> - join a clan");
 								$sender->sendMessage("/SAO clan quit - quit a clan");
 								$sender->sendMessage("/SAO clan create <clan> - create a clan");
@@ -504,10 +504,10 @@ class Main extends PluginBase implements Listener {
 						}
 					}
 					elseif(strtolower($arg[0]) == "version"){
-						$sender->sendMessage("SAO - Sword Art Online");
-						$sender->sendMessage("version: 0.2.1 beta");
-						$sender->sendMessage("API: 3.0.0");
-						$sender->sendMessage("author: NetherTechnology");
+						$sender->sendMessage("AversionCore");
+						$sender->sendMessage("version: 0.2.4 beta");
+						$sender->sendMessage("API: 3.0.0-ALPHA10");
+						$sender->sendMessage("author: @DakerOmar");
 					}
 				}
 			}
@@ -529,7 +529,7 @@ class Main extends PluginBase implements Listener {
 			$item = Item::get{DIAMOND_SWORD, 0, $amount};
 			break;
 			case 2;
-			$price = 200 * $amount;
+			$price = 2000 * $amount;
 			$item = Item::get(IRON_SWORD, 0, $amount);
 			break;
 			case 3;
@@ -541,7 +541,7 @@ class Main extends PluginBase implements Listener {
 			$item = Item::get(REDSTONE, 0, $amount);
 			break;
 			default;
-			$player->sendMessage("========[SAO Trading System]=======");
+			$player->sendMessage("========[AVERSION TRADING SYSTEM]=======");
 			$player->sendMessage("[ID]-[Item]=[Cost]");
 			$player->sendMessage("[1]-[DIAMOND_SWORD]-[1000]");
 			$player->sendMessage("[2]={IRON_SWORD}-[200]");
