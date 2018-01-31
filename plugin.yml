@@ -1,8 +1,8 @@
-name: SAO-MCPE
+name: SAO-System
 version: 1.0
 main: NetherTechnology\SAO\Main
-author: NetherTechnology
-api: 3.0.0
+author: BurritoMan46
+api: 3.0.0-ALPHA9
 
 commands:
    sao:
