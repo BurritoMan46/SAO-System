@@ -1,5 +1,5 @@
 # SAO-System
-The pocketmine plugin of Sword Art Online(SAO)
+The pocketmine plugin of Sword Art Online(SAO) by @BurritoMan46
 
 |Things to do: | Start Date: | End Date: | Percentage finished |
 | :---: | :---: | :---: | :---:|
