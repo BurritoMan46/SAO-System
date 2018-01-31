@@ -1,0 +1,7 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/BurritoMan46/SAO-System
+branches:
+- master
+projects:
+  SAO-System:
+    path: ""
+...
