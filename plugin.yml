@@ -1,8 +1,8 @@
 name: SAO-System
 version: 1.0
 main: NetherTechnology\SAO\Main
-author: BurritoMan46
-api: 3.0.0-ALPHA9
+author: MangoTheDev
+api: 3.0.0-ALPHA11
 
 commands:
    sao:
